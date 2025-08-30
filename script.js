@@ -34,57 +34,97 @@ const restaurant = {
     return [this.mainMenu[maincourse], this.starterMenu[starter]];
   },
 
-  // openingHours: {
-  //   thu: {
-  //     open: 12,
-  //     close: 22,
-  //   },
-  //   fri: {
-  //     open: 11,
-  //     close: 23,
-  //   },
-  //   sat: {
-  //     open: 0, // Open 24 hours
-  //     close: 24,
-  //   },
-  // },
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
+
+  delivery: function ({ time, place, maincourse, starter }) {
+    console.log(
+      `You order will be delivered at ${time} to ${place} which consist's of ${this.mainMenu[maincourse]} and ${this.starterMenu[starter]}`
+    );
+  },
 };
 
-const arr = [1, 2, 3];
-const first = arr[0];
-const second = arr[1];
-const thrid = arr[2];
-console.log(first, second, thrid);
+restaurant.delivery({
+  time: '10:30',
+  place: 'banglore',
+  maincourse: 2,
+  starter: 2,
+});
 
-// By using destucturing of arrays
+const { name, categories, openingHours } = restaurant;
+console.log(name, categories, openingHours);
 
-const [first1, second1, thrid1] = arr;
-console.log(first1, second1, thrid1);
-console.log(arr);
+const {
+  name: restaurantName,
+  categories: list,
+  openingHours: hours,
+} = restaurant;
+console.log(restaurantName, list, hours);
 
-// TO access specific elements
-let [main, , secondary] = restaurant.categories;
-console.log(main, secondary);
+// Default
+const { menu = [], categories: types = [] } = restaurant;
+console.log(menu, categories);
 
-//  To switch
-// let temp = main;
-// main = secondary;
-// secondary = temp;
+//mutating
+let a = 12;
+let b = 13;
+const abj = { a: 23, b: 24, c: 30 };
+({ a, b } = abj);
+console.log(a, b);
+
+// Nested
+const {
+  fri: { open, close },
+} = openingHours;
+console.log(open, close);
+
+// const arr = [1, 2, 3];
+// const first = arr[0];
+// const second = arr[1];
+// const thrid = arr[2];
+// console.log(first, second, thrid);
+
+// // By using destucturing of arrays
+
+// const [first1, second1, thrid1] = arr;
+// console.log(first1, second1, thrid1);
+// console.log(arr);
+
+// // TO access specific elements
+// let [main, , secondary] = restaurant.categories;
 // console.log(main, secondary);
 
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// //  To switch
+// // let temp = main;
+// // main = secondary;
+// // secondary = temp;
+// // console.log(main, secondary);
 
-console.log(restaurant.order(2, 3));
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
 
-// NESTED ARRAY
-const array2 = [1, 2, [3, 4]];
-const [first2, , thrid3] = array2;
-console.log(first2, thrid3);
-const [one, , [thrid4, thirid2]] = array2;
-console.log(one, thrid4, thirid2);
+// console.log(restaurant.order(2, 3));
 
-// default
-const array4 = [3, 4];
-const [i = 2, j = 1, m = 1, k = 1, l = 1] = array4;
-console.log(i, j, m, k, l);
+// // NESTED ARRAY
+// const array2 = [1, 2, [3, 4]];
+// const [first2, , thrid3] = array2;
+// console.log(first2, thrid3);
+// const [one, , [thrid4, thirid2]] = array2;
+// console.log(one, thrid4, thirid2);
+
+// // default
+// const array4 = [3, 4];
+// const [i = 2, j = 1, m = 1, k = 1, l = 1] = array4;
+// console.log(i, j, m, k, l);
