@@ -34,6 +34,10 @@ const restaurant = {
     return [this.mainMenu[maincourse], this.starterMenu[starter]];
   },
 
+  ordering: function (ing1, ing2, ing3) {
+    console.log(`Your Dosa was prepared!,It has ${ing1},${ing2},${ing3}`);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -56,40 +60,80 @@ const restaurant = {
   },
 };
 
-restaurant.delivery({
-  time: '10:30',
-  place: 'banglore',
-  maincourse: 2,
-  starter: 2,
-});
+////////SPREAD OPERATOR///////////
 
-const { name, categories, openingHours } = restaurant;
-console.log(name, categories, openingHours);
+const arr = [1, 2, 3, 4];
+const arr2 = [4, 5, arr[0], arr[1], arr[2]];
+const arr3 = [4, 5, ...arr];
+console.log(arr2);
+console.log(arr3);
+console.log(...arr);
 
-const {
-  name: restaurantName,
-  categories: list,
-  openingHours: hours,
-} = restaurant;
-console.log(restaurantName, list, hours);
+const newMenu = [...restaurant.mainMenu, 'Dosa'];
+console.log(newMenu);
 
-// Default
-const { menu = [], categories: types = [] } = restaurant;
-console.log(menu, categories);
+//Join 2 array's
+const newMenu1 = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(newMenu1);
 
-//mutating
-let a = 12;
-let b = 13;
-const abj = { a: 23, b: 24, c: 30 };
-({ a, b } = abj);
-console.log(a, b);
+//copy
+const catalog = [...restaurant.categories];
+console.log(catalog);
 
-// Nested
-const {
-  fri: { open, close },
-} = openingHours;
-console.log(open, close);
+// Iterables:arrays,strings,maps,sets,NOT objects
+const str = 'BHARATH';
+const str2 = ['P.', ...str];
+console.log(str2);
+console.log(...str2);
 
+const ingridents = [
+  // prompt('ingrideient1'),
+  // prompt('ingridient2'),
+  // prompt('ingridient3'),
+];
+
+restaurant.ordering(...ingridents);
+//Objects
+const newRestaurant = { newName: 'LUMNI', ...restaurant, founder: 'Bharath' };
+console.log(newRestaurant);
+
+//////// Destructuring object
+//***************** */
+// restaurant.delivery({
+//   time: '10:30',
+//   place: 'banglore',
+//   maincourse: 2,
+//   starter: 2,
+// });
+
+// const { name, categories, openingHours } = restaurant;
+// console.log(name, categories, openingHours);
+
+// const {
+//   name: restaurantName,
+//   categories: list,
+//   openingHours: hours,
+// } = restaurant;
+// console.log(restaurantName, list, hours);
+
+// // Default
+// const { menu = [], categories: types = [] } = restaurant;
+// console.log(menu, categories);
+
+// //mutating
+// let a = 12;
+// let b = 13;
+// const abj = { a: 23, b: 24, c: 30 };
+// ({ a, b } = abj);
+// console.log(a, b);
+
+// // Nested
+// const {
+//   fri: { open, close },
+// } = openingHours;
+// console.log(open, close);
+
+// /////////////Destructure object
 // const arr = [1, 2, 3];
 // const first = arr[0];
 // const second = arr[1];
