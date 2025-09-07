@@ -53,6 +53,14 @@ const restaurant = {
     },
   },
 
+  orderpizza: function (main_ing, ...optional_ing) {
+    if (optional_ing.length == 0) {
+      optional_ing.push('onions', 'pepper');
+    }
+    console.log(main_ing);
+    console.log(optional_ing);
+  },
+
   delivery: function ({ time, place, maincourse, starter }) {
     console.log(
       `You order will be delivered at ${time} to ${place} which consist's of ${this.mainMenu[maincourse]} and ${this.starterMenu[starter]}`
@@ -60,42 +68,77 @@ const restaurant = {
   },
 };
 
-////////SPREAD OPERATOR///////////
+// ***REST OPERATOR***//
+// It is spread if it is in the right sife of the "="
+const arr = [1, 2, ...[3, 4]];
 
-const arr = [1, 2, 3, 4];
-const arr2 = [4, 5, arr[0], arr[1], arr[2]];
-const arr3 = [4, 5, ...arr];
-console.log(arr2);
-console.log(arr3);
-console.log(...arr);
+//It is REST, if it is leftside "="
+const [a, b, ...arr1] = [1, 2, 3, 4, 5];
+console.log(a, b, arr1);
 
-const newMenu = [...restaurant.mainMenu, 'Dosa'];
-console.log(newMenu);
-
-//Join 2 array's
-const newMenu1 = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(newMenu1);
-
-//copy
-const catalog = [...restaurant.categories];
-console.log(catalog);
-
-// Iterables:arrays,strings,maps,sets,NOT objects
-const str = 'BHARATH';
-const str2 = ['P.', ...str];
-console.log(str2);
-console.log(...str2);
-
-const ingridents = [
-  // prompt('ingrideient1'),
-  // prompt('ingridient2'),
-  // prompt('ingridient3'),
+//IT does not include skipped elements
+const [pizza, , , , , garlicbread, ...items] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
 ];
+console.log(pizza, garlicbread, items);
 
-restaurant.ordering(...ingridents);
-//Objects
-const newRestaurant = { newName: 'LUMNI', ...restaurant, founder: 'Bharath' };
-console.log(newRestaurant);
+//objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat);
+console.log(weekdays);
+
+//functions
+const add = function (...parameters) {
+  let sum = 0;
+  for (let i = 0; i < parameters.length; i++) sum += parameters[i];
+  console.log(sum);
+};
+
+add(4, 2, 3);
+
+const arr3 = [4, 5, 6];
+add(...arr3);
+
+restaurant.orderpizza('mushroom', 'onions', 'olives');
+restaurant.orderpizza('mushroom');
+
+// ////////SPREAD OPERATOR///////////
+
+// const arr = [1, 2, 3, 4];
+// const arr2 = [4, 5, arr[0], arr[1], arr[2]];
+// const arr3 = [4, 5, ...arr];
+// console.log(arr2);
+// console.log(arr3);
+// console.log(...arr);
+
+// const newMenu = [...restaurant.mainMenu, 'Dosa'];
+// console.log(newMenu);
+
+// //Join 2 array's
+// const newMenu1 = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(newMenu1);
+
+// //copy
+// const catalog = [...restaurant.categories];
+// console.log(catalog);
+
+// // Iterables:arrays,strings,maps,sets,NOT objects
+// const str = 'BHARATH';
+// const str2 = ['P.', ...str];
+// console.log(str2);
+// console.log(...str2);
+
+// const ingridents = [
+//   // prompt('ingrideient1'),
+//   // prompt('ingridient2'),
+//   // prompt('ingridient3'),
+// ];
+
+// restaurant.ordering(...ingridents);
+// //Objects
+// const newRestaurant = { newName: 'LUMNI', ...restaurant, founder: 'Bharath' };
+// console.log(newRestaurant);
 
 //////// Destructuring object
 //***************** */
@@ -133,7 +176,7 @@ console.log(newRestaurant);
 // } = openingHours;
 // console.log(open, close);
 
-// /////////////Destructure object
+// /////////////Destructure array
 // const arr = [1, 2, 3];
 // const first = arr[0];
 // const second = arr[1];
