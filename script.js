@@ -68,40 +68,75 @@ const restaurant = {
   },
 };
 
-// ***REST OPERATOR***//
-// It is spread if it is in the right sife of the "="
-const arr = [1, 2, ...[3, 4]];
+///// *****The Nullish coalescing Operator (??)********* //////
 
-//It is REST, if it is leftside "="
-const [a, b, ...arr1] = [1, 2, 3, 4, 5];
-console.log(a, b, arr1);
+// This operator consider both the  "0" and " "///
 
-//IT does not include skipped elements
-const [pizza, , , , , garlicbread, ...items] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, garlicbread, items);
+console.log(0 ?? 'jonas');
+console.log('' ?? 'jonas');
 
-//objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(sat);
-console.log(weekdays);
+restaurant.num = 0;
+const guest94 = restaurant.num ?? 'jonas';
+console.log(guest94);
 
-//functions
-const add = function (...parameters) {
-  let sum = 0;
-  for (let i = 0; i < parameters.length; i++) sum += parameters[i];
-  console.log(sum);
-};
+//// ****Short Circuiting(&& and ||)****** ////
+console.log('' || 'jonas');
+console.log(null || 0); //print the second falsy value
+console.log(23 || 'johnas'); //gives the first truthy value
+console.log(0 || '' || 'john'); // ignores the falsy value due to short circuiting
 
-add(4, 2, 3);
+restaurant.num = 23;
+const guest = restaurant.num ? restaurant.num : 'no';
+console.log(guest); //since restaurant.num is true it has given value otherwise it may become false
 
-const arr3 = [4, 5, 6];
-add(...arr3);
+const guest1 = restaurant.num || 10;
+console.log(guest1);
 
-restaurant.orderpizza('mushroom', 'onions', 'olives');
-restaurant.orderpizza('mushroom');
+console.log('____&&_____');
+//it is exact reverse of "||"
+
+console.log('' && 'jonas');
+console.log(null && 0);
+console.log(23 && 'johnas');
+console.log(0 && '' && 'john');
+
+const guest12 = restaurant.num && 10;
+console.log(guest12);
+
+// // ***REST OPERATOR***//
+// // It is spread if it is in the right sife of the "="
+// const arr = [1, 2, ...[3, 4]];
+
+// //It is REST, if it is leftside "="
+// const [a, b, ...arr1] = [1, 2, 3, 4, 5];
+// console.log(a, b, arr1);
+
+// //IT does not include skipped elements
+// const [pizza, , , , , garlicbread, ...items] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, garlicbread, items);
+
+// //objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(sat);
+// console.log(weekdays);
+
+// //functions
+// const add = function (...parameters) {
+//   let sum = 0;
+//   for (let i = 0; i < parameters.length; i++) sum += parameters[i];
+//   console.log(sum);
+// };
+
+// add(4, 2, 3);
+
+// const arr3 = [4, 5, 6];
+// add(...arr3);
+
+// restaurant.orderpizza('mushroom', 'onions', 'olives');
+// restaurant.orderpizza('mushroom');
 
 // ////////SPREAD OPERATOR///////////
 
