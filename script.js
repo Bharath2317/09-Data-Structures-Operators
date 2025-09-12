@@ -331,3 +331,7 @@ game.scored.forEach(goal => console.log(goal));
 
 team1 < team2 && console.log('team1 is more likely to win');
 team1 > team2 && console.log('team2 is likely to win');
+
+for (const [index, players] of teamplayers.entries()) {
+  console.log(`${index + 1}: ${players}`);
+}
