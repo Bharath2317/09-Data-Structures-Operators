@@ -22,6 +22,23 @@
 //   'garlic',
 // ]);
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  [`day-${2 + 4}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -29,31 +46,17 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  openingHours,
 
-  order: function (maincourse, starter) {
+  order(maincourse, starter) {
     return [this.mainMenu[maincourse], this.starterMenu[starter]];
   },
 
-  ordering: function (ing1, ing2, ing3) {
+  ordering(ing1, ing2, ing3) {
     console.log(`Your Dosa was prepared!,It has ${ing1},${ing2},${ing3}`);
   },
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-
-  orderpizza: function (main_ing, ...optional_ing) {
+  orderpizza(main_ing, ...optional_ing) {
     if (optional_ing.length == 0) {
       optional_ing.push('onions', 'pepper');
     }
@@ -61,7 +64,7 @@ const restaurant = {
     console.log(optional_ing);
   },
 
-  delivery: function ({ time, place, maincourse, starter }) {
+  delivery({ time, place, maincourse, starter }) {
     console.log(
       `You order will be delivered at ${time} to ${place} which consist's of ${this.mainMenu[maincourse]} and ${this.starterMenu[starter]}`
     );
@@ -263,75 +266,75 @@ const restaurant = {
 
 // TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Then, call the function again with players from game.scored
 
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
 
-const [gk, ...teamplayers] = players1;
-console.log(gk, teamplayers);
+// const [gk, ...teamplayers] = players1;
+// console.log(gk, teamplayers);
 
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
 
-const plyersfinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(plyersfinal);
+// const plyersfinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// console.log(plyersfinal);
 
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-console.log(team1, draw, team2);
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// console.log(team1, draw, team2);
 
-const printgoals = function (...players) {
-  console.log(players);
-  console.log(`${players.length} goals has been scored`);
-};
+// const printgoals = function (...players) {
+//   console.log(players);
+//   console.log(`${players.length} goals has been scored`);
+// };
 
-printgoals(...game.scored);
-game.scored.forEach(goal => console.log(goal));
+// printgoals(...game.scored);
+// game.scored.forEach(goal => console.log(goal));
 
-team1 < team2 && console.log('team1 is more likely to win');
-team1 > team2 && console.log('team2 is likely to win');
+// team1 < team2 && console.log('team1 is more likely to win');
+// team1 > team2 && console.log('team2 is likely to win');
 
-for (const [index, players] of teamplayers.entries()) {
-  console.log(`${index + 1}: ${players}`);
-}
+// for (const [index, players] of teamplayers.entries()) {
+//   console.log(`${index + 1}: ${players}`);
+// }
