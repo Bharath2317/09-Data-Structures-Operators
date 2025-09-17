@@ -37,6 +37,10 @@ const openingHours = {
     open: 0, // Open 24 hours
     close: 24,
   },
+  sun: {
+    open: 'closed on sunday',
+    close: 'not opening until monday morning',
+  },
 };
 
 // Data needed for first part of the section
