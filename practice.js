@@ -258,3 +258,16 @@ const printBookInfo = function ({ title, author, year = 'unknown' }) {
   console.log(`${title} by ${author},${year}`);
 };
 printBookInfo({ title: 'algo', author: 'john' });
+
+const bookAuthor1 = [...books[0].author, ...books[1].author];
+
+const spellWord = function (...str) {
+  console.log(str);
+};
+console.log('javaScrript');
+
+const [mainKeyword, ...rest] = books[0].keywords;
+
+const printBookAuthorCount = function (title, ...author) {
+  console.log(`The book "${title}" has "${author.length}"`);
+};
